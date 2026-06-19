@@ -12,6 +12,9 @@ export class TransportTrs {
     @Column({ type: "integer", default: 0 })
     microbus!: number;
 
+    @Column({ type: "varchar", nullable: true })
+    observation!: string | null;
+
     @Column({ name: "uf_id" })
     ufId!: number;
 

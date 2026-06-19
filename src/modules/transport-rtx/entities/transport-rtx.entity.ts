@@ -15,6 +15,9 @@ export class TransportRtx {
     @Column({ type: "integer", default: 0 })
     minibus!: number;
 
+    @Column({ type: "varchar", nullable: true })
+    observation!: string | null;
+
     @Column({ name: "uf_id" })
     ufId!: number;
 

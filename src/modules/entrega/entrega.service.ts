@@ -67,6 +67,7 @@ export class EntregaService {
 
         if (data.rtxTrs) await this.deliveredRtxTrsRepo.updateByUfId(ufId, data.rtxTrs);
         if (data.generalQuota) await this.deliveredGeneralQuotaRepo.updateByUfId(ufId, data.generalQuota);
-        if (data.observation !== undefined) await this.ufRepo.update(ufId, { observation: data.observation });
+        if (data.rtxObservation !== undefined) await this.transportRtxRepo.updateByUfId(ufId, { observation: data.rtxObservation });
+        if (data.trsObservation !== undefined) await this.transportTrsRepo.updateByUfId(ufId, { observation: data.trsObservation });
     }
 }

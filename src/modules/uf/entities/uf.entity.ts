@@ -16,7 +16,4 @@ export class Uf {
 
     @Column({ type: "varchar", nullable: true })
     cib!: string | null;
-
-    @Column({ type: "varchar", nullable: true })
-    observation!: string | null;
 }

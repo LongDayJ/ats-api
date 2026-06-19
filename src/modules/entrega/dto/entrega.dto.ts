@@ -15,5 +15,6 @@ export class UpdateGeneralQuotaDto {
 export class UpdateEntregaDto {
     @ApiPropertyOptional() rtxTrs?: UpdateRtxTrsDto;
     @ApiPropertyOptional() generalQuota?: UpdateGeneralQuotaDto;
-    @ApiPropertyOptional() observation?: string | null;
+    @ApiPropertyOptional() rtxObservation?: string | null;
+    @ApiPropertyOptional() trsObservation?: string | null;
 }
