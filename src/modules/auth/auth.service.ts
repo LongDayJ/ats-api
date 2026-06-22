@@ -70,7 +70,6 @@ export class AuthService {
             sendCredentialsEmail({
                 to: data.email,
                 name: data.name + " " + data.surname,
-                login,
                 password: plainPassword,
             }).catch((err) =>
                 console.warn("[mail] Falha ao enviar credenciais:", err && err.message),

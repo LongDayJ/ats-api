@@ -4,14 +4,12 @@ import { credentialsEmailTemplate } from "./mail.templates";
 interface SendCredentialsParams {
     to: string;
     name: string;
-    login: string;
     password: string;
 }
 
 export async function sendCredentialsEmail({
     to,
     name,
-    login,
     password,
 }: SendCredentialsParams): Promise<void> {
     const transporter = nodemailer.createTransport({
@@ -28,6 +26,6 @@ export async function sendCredentialsEmail({
         from: `"${process.env.MAIL_FROM_NAME ?? "Sistema ATS"}" <${process.env.MAIL_USER}>`,
         to,
         subject: "Suas credenciais de acesso — Sistema ATS",
-        html: credentialsEmailTemplate(name, login, password),
+        html: credentialsEmailTemplate(name, to, password),
     });
 }

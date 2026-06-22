@@ -1,3 +1,4 @@
+import { sendCredentialsEmail } from "../../common/mail/mail.service";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { configDotenv } from "dotenv";
@@ -332,35 +333,41 @@ async function seed() {
     }
 
     // --- Usuarios extras ---
-    const USERS_TO_SEED: { name: string; surname: string; email: string; role: "admin" | "gestor" | "visualizador" }[] = [
-        // Adicione os usuarios aqui:
-        { name: "Joao",  surname: "Silva",    email: "joao.silva@saude.gov.br",    role: "gestor"       },
-        { name: "Maria", surname: "Oliveira", email: "maria.oliveira@saude.gov.br", role: "visualizador" },
+    // email e gerado automaticamente como nome.sobrenome@saude.gov.br
+    const USERS_TO_SEED: { name: string; surname: string; role: "admin" | "gestor" | "visualizador" }[] = [
+        { name: "Juarez", surname: "Silva", role: "admin"  },
+        { name: "Igor",   surname: "Lins",  role: "gestor" },
     ];
 
     if (USERS_TO_SEED.length > 0) {
         console.log("\n  Usuarios extras:");
         for (const u of USERS_TO_SEED) {
-            const alreadyExists = await userRepo.findOne({ where: { email: u.email } });
+            const email = `${generateLogin(u.name, u.surname)}@saude.gov.br`;
+            const alreadyExists = await userRepo.findOne({ where: { email } });
             if (!alreadyExists) {
                 const plain = generatePassword(u.name, u.surname);
                 const hashed = await bcrypt.hash(plain, hashAmount);
                 await userRepo.save(userRepo.create({
                     name: u.name,
                     surname: u.surname,
-                    email: u.email,
+                    email,
                     password: hashed,
                     role: u.role,
                 }));
-                console.log("  + " + u.name + " " + u.surname + "  |  login: " + generateLogin(u.name, u.surname) + "  |  senha: " + plain);
+                await sendCredentialsEmail({
+                    to: email,
+                    name: u.name,
+                    password: plain,
+                }).catch((err: Error) => console.warn("  ! Email falhou para", email, "-", err.message));
+                console.log("    + " + email + " | " + plain);
             } else {
-                console.log("  - " + u.email + " ja existe, pulando.");
+                console.log("    - " + email + " ja existe, pulando.");
             }
         }
     }
 
     await dataSource.destroy();
-    console.log("\nSeed concluido!\n");
+    console.log("\n Seed concluido!\n");
 }
 
 seed().catch((err) => {
