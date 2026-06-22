@@ -23,9 +23,9 @@ export async function sendCredentialsEmail({
     });
 
     await transporter.sendMail({
-        from: `"${process.env.MAIL_FROM_NAME ?? "Sistema ATS"}" <${process.env.MAIL_USER}>`,
+        from: `"${process.env.MAIL_FROM_NAME ?? "Sistema de Acompanhamento do Transporte Sanitario"}" <${process.env.MAIL_USER}>`,
         to,
-        subject: "Suas credenciais de acesso — Sistema ATS",
+        subject: "Suas credenciais de acesso — Sistema de Acompanhamento do Transporte Sanitario",
         html: credentialsEmailTemplate(name, to, password),
     });
 }
