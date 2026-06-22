@@ -335,8 +335,12 @@ async function seed() {
     // --- Usuarios extras ---
     // email e gerado automaticamente como nome.sobrenome@saude.gov.br
     const USERS_TO_SEED: { name: string; surname: string; role: "admin" | "gestor" | "visualizador" }[] = [
-        { name: "Juarez", surname: "Silva", role: "admin"  },
-        // { name: "Igor",   surname: "Lins",  role: "gestor" },
+        // { name: "Rosalva", surname: "Silva", role: "gestor"  },
+        // { name: "Andressa", surname: "Gorla", role: "gestor"  },
+        // { name: "Henrique", surname: "Farias", role: "gestor"  },
+        // { name: "Amanda", surname: "Chaves", role: "admin"  },
+        // { name: "Igor",   surname: "Lins",  role: "admin" },
+        // { name: "Juarez", surname: "Silva", role: "admin"  },
     ];
 
     if (USERS_TO_SEED.length > 0) {

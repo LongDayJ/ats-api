@@ -19,10 +19,10 @@ export function credentialsEmailTemplate(
 
       <!-- Header -->
       <tr>
-        <td style="background:linear-gradient(135deg,#1b5e3b 0%,#2e7d52 100%);padding:44px 48px 36px;text-align:center;">
-          <div style="width:60px;height:60px;background:rgba(255,255,255,0.18);border-radius:16px;display:inline-block;line-height:60px;font-size:30px;margin-bottom:18px;">&#128273;</div>
+        <td bgcolor="#1b5e3b" style="background-color:#1b5e3b;padding:44px 48px 36px;text-align:center;">
+          <p style="margin:0 0 8px;font-size:34px;line-height:1;">&#128273;</p>
           <p style="margin:0 0 4px;color:#fff;font-size:22px;font-weight:700;">Bem-vindo(a)</p>
-          <p style="margin:0;color:rgba(255,255,255,0.75);font-size:13px;">Acompanhamento do Transporte Sanitario - DECAN/MS</p>
+          <p style="margin:0;color:#a8d5bc;font-size:13px;">Acompanhamento do Transporte Sanitario - DECAN/MS</p>
         </td>
       </tr>
 
