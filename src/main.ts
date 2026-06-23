@@ -4,6 +4,8 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { AppModule } from "./app.module";
 import { HttpExceptionFilter } from "./filters/http-exception.filter";
 import { ResponseInterceptor } from "./common/interceptors/response.interceptor";
+import { HttpCacheInterceptor } from "./common/interceptors/cache.interceptor";
+import compression from "compression";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,9 +13,23 @@ dotenv.config();
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
-    app.enableCors();
+    // Compressão gzip — reduz payload em ~70% (crítico pra mobile)
+    app.use(compression({ level: 6, threshold: 1024 }));
+
+    app.enableCors({
+        origin: process.env.CORS_ORIGIN ?? "*",
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+        maxAge: 86400, // preflight cache por 24h — elimina OPTIONS request repetido
+    });
+
     app.useGlobalFilters(new HttpExceptionFilter());
-    app.useGlobalInterceptors(new ResponseInterceptor());
+    app.useGlobalInterceptors(new HttpCacheInterceptor(), new ResponseInterceptor());
+
+    // Keep-Alive — reutiliza conexões TCP (importante pra mobile com latência alta)
+    const server = app.getHttpServer();
+    server.keepAliveTimeout = 65_000;
+    server.headersTimeout   = 66_000;
 
     const config = new DocumentBuilder()
         .setTitle("ATS API")

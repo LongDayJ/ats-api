@@ -15,6 +15,7 @@ import { DistribuicaoModule } from "./modules/distribuicao/distribuicao.module";
 import { EntregaModule } from "./modules/entrega/entrega.module";
 import { CotaGeralModule } from "./modules/cota-geral/cota-geral.module";
 import { ConsolidadoModule } from "./modules/consolidado/consolidado.module";
+import { HospitalModule } from "./modules/hospital/hospital.module";
 
 @Module({
     controllers: [AppController],
@@ -34,6 +35,8 @@ import { ConsolidadoModule } from "./modules/consolidado/consolidado.module";
         EntregaModule,
         CotaGeralModule,
         ConsolidadoModule,
+        // TOMO/RNM
+        HospitalModule,
     ],
 })
 export class AppModule {}

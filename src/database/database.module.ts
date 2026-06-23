@@ -9,6 +9,9 @@ import { GeneralQuota } from "../modules/general-quota/entities/general-quota.en
 import { DeliveredRtxTrs } from "../modules/delivered-rtx-trs/entities/delivered-rtx-trs.entity";
 import { DeliveredGeneralQuota } from "../modules/delivered-general-quota/entities/delivered-general-quota.entity";
 import { TransportValue } from "../modules/transport-value/entities/transport-value.entity";
+import { Hospital } from "../modules/hospital/entities/hospital.entity";
+import { HospitalTomo } from "../modules/hospital/entities/hospital-tomo.entity";
+import { HospitalRnm } from "../modules/hospital/entities/hospital-rnm.entity";
 
 configDotenv();
 
@@ -22,7 +25,7 @@ configDotenv();
             password: String(process.env.DB_PASSWORD),
             database: process.env.DB_DATABASE,
             schema: "public",
-            entities: [Users, Uf, TransportRtx, TransportTrs, GeneralQuota, DeliveredRtxTrs, DeliveredGeneralQuota, TransportValue],
+            entities: [Users, Uf, TransportRtx, TransportTrs, GeneralQuota, DeliveredRtxTrs, DeliveredGeneralQuota, TransportValue, Hospital, HospitalTomo, HospitalRnm],
             synchronize: false,
             migrations: ["dist/database/migrations/*.js"],
         }),

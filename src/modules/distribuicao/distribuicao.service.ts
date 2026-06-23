@@ -15,9 +15,11 @@ export class DistribuicaoService {
     ) {}
 
     async findAll() {
-        const ufs = await this.ufRepo.findAll();
-        const rtxList = await this.transportRtxRepo.findAll();
-        const trsList = await this.transportTrsRepo.findAll();
+        const [ufs, rtxList, trsList] = await Promise.all([
+            this.ufRepo.findAll(),
+            this.transportRtxRepo.findAll(),
+            this.transportTrsRepo.findAll(),
+        ]);
 
         return ufs.map((uf) => ({
             uf,

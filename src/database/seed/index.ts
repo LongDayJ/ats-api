@@ -325,7 +325,7 @@ async function seed() {
         await transportValueRepo.save([
             transportValueRepo.create({ name: "Ambulancia tipo A", price: 274977.00 }),
             transportValueRepo.create({ name: "Van", price: 304600.00 }),
-            transportValueRepo.create({ name: "Micro-Onibus", price: 584800.00 }),
+            transportValueRepo.create({ name: "Micro-Onibus", price: 584600.00 }),
         ]);
         console.log("  + 3 registros criados em transport_value");
     } else {
@@ -337,10 +337,11 @@ async function seed() {
     const USERS_TO_SEED: { name: string; surname: string; role: "admin" | "gestor" | "visualizador" }[] = [
         // { name: "Rosalva", surname: "Silva", role: "gestor"  },
         // { name: "Andressa", surname: "Gorla", role: "gestor"  },
-        // { name: "Henrique", surname: "Farias", role: "gestor"  },
         // { name: "Amanda", surname: "Chaves", role: "admin"  },
         // { name: "Igor",   surname: "Lins",  role: "admin" },
         // { name: "Juarez", surname: "Silva", role: "admin"  },
+        // { name: "Henrique", surname: "Faria", role: "gestor"  },
+        // { name: "Maria", surname: "Torquato", role: "gestor"  },
     ];
 
     if (USERS_TO_SEED.length > 0) {

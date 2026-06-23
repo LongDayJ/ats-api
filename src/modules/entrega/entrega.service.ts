@@ -65,15 +65,18 @@ export class EntregaService {
         const uf = await this.ufRepo.findById(ufId);
         if (!uf) throw new NotFoundException(`UF ${ufId} nao encontrada`);
 
-        if (data.rtxTrs) await this.deliveredRtxTrsRepo.updateByUfId(ufId, data.rtxTrs);
-        if (data.generalQuota) await this.deliveredGeneralQuotaRepo.updateByUfId(ufId, data.generalQuota);
-        if (data.rtxObservation !== undefined) await this.transportRtxRepo.updateByUfId(ufId, { observation: data.rtxObservation });
-        if (data.trsObservation !== undefined) await this.transportTrsRepo.updateByUfId(ufId, { observation: data.trsObservation });
-        if (data.cib !== undefined || data.agreement !== undefined) {
-            await this.ufRepo.update(uf.id, {
-                ...(data.cib !== undefined && { cib: data.cib }),
-                ...(data.agreement !== undefined && { agreement: data.agreement }),
-            });
-        }
+        // Todos os updates independentes em paralelo
+        await Promise.all([
+            data.rtxTrs         ? this.deliveredRtxTrsRepo.updateByUfId(ufId, data.rtxTrs)                             : null,
+            data.generalQuota   ? this.deliveredGeneralQuotaRepo.updateByUfId(ufId, data.generalQuota)                 : null,
+            data.rtxObservation !== undefined ? this.transportRtxRepo.updateByUfId(ufId, { observation: data.rtxObservation }) : null,
+            data.trsObservation !== undefined ? this.transportTrsRepo.updateByUfId(ufId, { observation: data.trsObservation }) : null,
+            (data.cib !== undefined || data.agreement !== undefined)
+                ? this.ufRepo.update(uf.id, {
+                    ...(data.cib !== undefined && { cib: data.cib }),
+                    ...(data.agreement !== undefined && { agreement: data.agreement }),
+                })
+                : null,
+        ].filter(Boolean));
     }
 }
