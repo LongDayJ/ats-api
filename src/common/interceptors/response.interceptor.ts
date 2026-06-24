@@ -3,6 +3,7 @@ import {
     ExecutionContext,
     Injectable,
     NestInterceptor,
+    StreamableFile,
 } from "@nestjs/common";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -18,6 +19,12 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, StandardRespon
     intercept(_ctx: ExecutionContext, next: CallHandler<T>): Observable<StandardResponse<T>> {
         return next.handle().pipe(
             map((response) => {
+                // StreamableFile must pass through without wrapping — interceptor
+                // would otherwise serialize the binary as JSON and corrupt it.
+                if (response instanceof StreamableFile) {
+                    return response as unknown as StandardResponse<T>;
+                }
+
                 const isObject =
                     response !== null &&
                     response !== undefined &&

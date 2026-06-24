@@ -342,6 +342,10 @@ async function seed() {
         // { name: "Juarez", surname: "Silva", role: "admin"  },
         // { name: "Henrique", surname: "Faria", role: "gestor"  },
         // { name: "Maria", surname: "Torquato", role: "gestor"  },
+        { name: "Thiago", surname: "Marcal", role: "visualizador"  },
+        { name: "Crystina", surname: "Yamamamoto", role: "visualizador"  },
+        { name: "Philippe", surname: "Rodrigues", role: "visualizador"  },
+        { name: "Raquel", surname: "Machado", role: "visualizador"  },
     ];
 
     if (USERS_TO_SEED.length > 0) {
