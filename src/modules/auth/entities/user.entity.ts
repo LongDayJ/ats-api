@@ -7,7 +7,14 @@ import {
     UpdateDateColumn,
 } from "typeorm";
 
-export type UserRole = "admin" | "gestor" | "visualizador";
+export type UserRole =
+    | "admin"
+    | "gestor_transporte"
+    | "gestor_tomo"
+    | "gestor_all"
+    | "visualizador_transporte"
+    | "visualizador_tomo"
+    | "visualizador_all";
 
 @Entity("users")
 export class Users {
@@ -26,7 +33,7 @@ export class Users {
     @Column({ name: "password", type: "varchar" })
     password!: string;
 
-    @Column({ type: "varchar", default: "visualizador" })
+    @Column({ type: "varchar", default: "visualizador_transporte" })
     role!: UserRole;
 
     @CreateDateColumn({ name: "created_at" })

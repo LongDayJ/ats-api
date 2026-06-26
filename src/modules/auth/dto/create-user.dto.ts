@@ -13,7 +13,10 @@ export class CreateUserDto {
     @ApiProperty({ example: "senha123", required: false, description: "Se omitido, gerado automaticamente: NomeSobrenome + 3 digitos" })
     password?: string;
 
-    @ApiProperty({ enum: ["admin", "gestor", "visualizador"], example: "gestor" })
+    @ApiProperty({
+        enum: ["admin", "gestor_transporte", "gestor_tomo", "gestor_all", "visualizador_transporte", "visualizador_tomo", "visualizador_all"],
+        example: "gestor_transporte",
+    })
     role!: string;
 }
 

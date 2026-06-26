@@ -41,7 +41,7 @@ export class EntregaController {
 
     @Put(":ufId")
     @UseGuards(RolesGuard)
-    @Roles("admin", "gestor")
+    @Roles("admin", "gestor_transporte", "gestor_all")
     @ApiOperation({ summary: "Atualizar entregas de uma UF (admin/gestor)" })
     @ApiResponse({ status: 200, description: "Entrega atualizada" })
     @ApiResponse({ status: 403, description: "Sem permissão" })

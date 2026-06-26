@@ -33,7 +33,7 @@ export class CotaGeralController {
 
     @Put(":ufId")
     @UseGuards(RolesGuard)
-    @Roles("admin", "gestor")
+    @Roles("admin", "gestor_transporte", "gestor_all")
     @ApiOperation({ summary: "Atualizar cota geral e/ou entregues de uma UF (admin/gestor)" })
     @ApiResponse({ status: 200, description: "Cota geral atualizada" })
     @ApiResponse({ status: 403, description: "Sem permissão" })

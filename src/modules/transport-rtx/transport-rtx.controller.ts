@@ -19,10 +19,10 @@ export class TransportRtxController {
     @Get(":id")
     findById(@Param("id", ParseIntPipe) id: number) { return this.service.findById(id); }
 
-    @Post() @UseGuards(RolesGuard) @Roles("admin", "gestor")
+    @Post() @UseGuards(RolesGuard) @Roles("admin", "gestor_transporte", "gestor_all")
     create(@Body() body: TransportRtxDto) { return this.service.create(body); }
 
-    @Put(":id") @UseGuards(RolesGuard) @Roles("admin", "gestor")
+    @Put(":id") @UseGuards(RolesGuard) @Roles("admin", "gestor_transporte", "gestor_all")
     update(@Param("id", ParseIntPipe) id: number, @Body() body: UpdateTransportRtxDto) {
         return this.service.update(id, body);
     }

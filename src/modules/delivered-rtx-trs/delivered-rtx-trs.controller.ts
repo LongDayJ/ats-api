@@ -18,7 +18,7 @@ export class DeliveredRtxTrsController {
 
     @Put(":ufId")
     @UseGuards(RolesGuard)
-    @Roles("admin", "gestor")
+    @Roles("admin", "gestor_transporte", "gestor_all")
     updateByUfId(@Param("ufId", ParseIntPipe) ufId: number, @Body() body: UpdateDeliveredRtxTrsDto) {
         return this.service.updateByUfId(ufId, body);
     }

@@ -33,7 +33,7 @@ export class DistribuicaoController {
 
     @Put(":ufId")
     @UseGuards(RolesGuard)
-    @Roles("admin", "gestor")
+    @Roles("admin", "gestor_transporte", "gestor_all")
     @ApiOperation({ summary: "Atualizar RTX e/ou TRS de uma UF (admin/gestor)" })
     @ApiResponse({ status: 200, description: "Distribuição atualizada" })
     @ApiResponse({ status: 403, description: "Sem permissão" })

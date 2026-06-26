@@ -16,10 +16,23 @@ export class UpdateHospitalTomoDto {
     @ApiPropertyOptional() @IsOptional() @IsString() installed?: string;
     @ApiPropertyOptional() @IsOptional() @IsString() cnes?: string | null;
     @ApiPropertyOptional() @IsOptional() @IsBoolean() ebserhPriority?: boolean | null;
+    @ApiPropertyOptional() @IsOptional() @IsString() deliveryDate?: string | null;
 }
 
 export class UpdateHospitalRnmDto {
     @ApiPropertyOptional() @IsOptional() @IsString() status?: string;
+    @ApiPropertyOptional() @IsOptional() @IsString() contract?: string;
+    @ApiPropertyOptional() @IsOptional() @IsString() structure90Days?: string;
+    @ApiPropertyOptional() @IsOptional() @IsString() formSent?: string;
+    @ApiPropertyOptional() @IsOptional() @IsString() formReceived?: string;
+    @ApiPropertyOptional() @IsOptional() @IsString() contactNotes?: string;
+    @ApiPropertyOptional() @IsOptional() @IsString() contactResponsible?: string;
+    @ApiPropertyOptional() @IsOptional() @IsString() priorityGroup?: string;
+    @ApiPropertyOptional() @IsOptional() @IsNumber() deliveryOrder?: number | null;
+    @ApiPropertyOptional() @IsOptional() @IsString() construction?: string;
+    @ApiPropertyOptional() @IsOptional() @IsString() installed?: string;
+    @ApiPropertyOptional() @IsOptional() @IsBoolean() ebserhPriority?: boolean | null;
+    @ApiPropertyOptional() @IsOptional() @IsString() deliveryDate?: string | null;
     @ApiPropertyOptional() @IsOptional() @IsString() notes?: string;
     @ApiPropertyOptional() @IsOptional() @IsString() cnes?: string | null;
 }

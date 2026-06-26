@@ -30,7 +30,7 @@ export class CibController {
 
     @Post(":ufId")
     @UseGuards(RolesGuard)
-    @Roles("admin", "gestor")
+    @Roles("admin", "gestor_transporte", "gestor_all")
     @UseInterceptors(FileInterceptor("file", {
         limits: { fileSize: 20 * 1024 * 1024 }, // 20 MB
         fileFilter: (_req, file, cb) => {
@@ -80,7 +80,7 @@ export class CibController {
 
     @Delete(":id")
     @UseGuards(RolesGuard)
-    @Roles("admin", "gestor")
+    @Roles("admin", "gestor_transporte", "gestor_all")
     @ApiOperation({ summary: "Deletar um CIB pelo ID" })
     async delete(@Param("id") id: string) {
         await this.service.delete(Number(id));

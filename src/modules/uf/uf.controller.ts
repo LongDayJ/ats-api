@@ -23,7 +23,7 @@ export class UfController {
 
     @Put(":id")
     @UseGuards(RolesGuard)
-    @Roles("admin", "gestor")
+    @Roles("admin", "gestor_transporte", "gestor_all")
     @ApiOperation({ summary: "Atualizar agreement e cib de uma UF" })
     update(@Param("id", ParseIntPipe) id: number, @Body() body: UpdateUfDto) {
         return this.service.update(id, body);
