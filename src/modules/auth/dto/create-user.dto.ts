@@ -14,7 +14,7 @@ export class CreateUserDto {
     password?: string;
 
     @ApiProperty({
-        enum: ["admin", "gestor_transporte", "gestor_tomo", "gestor_all", "visualizador_transporte", "visualizador_tomo", "visualizador_all"],
+        enum: ["admin", "gestor_transporte", "gestor_tomo", "gestor_all", "gestor_all_combo", "visualizador_transporte", "visualizador_tomo", "visualizador_all"],
         example: "gestor_transporte",
     })
     role!: string;

@@ -27,7 +27,7 @@ export class HospitalController {
     // ── Listar tabela TOMO ────────────────────────────────────────────────────
 
     @Get("tomo")
-    @Roles("admin", "gestor_tomo", "gestor_all", "visualizador_tomo", "visualizador_all")
+    @Roles("admin", "gestor_tomo", "gestor_all", "gestor_all_combo", "visualizador_tomo", "visualizador_all")
     @ApiOperation({ summary: "Listar todos os hospitais com dados TOMO" })
     findAllTomo() {
         return this.service.findAllTomo();
@@ -36,7 +36,7 @@ export class HospitalController {
     // ── Listar tabela RNM ─────────────────────────────────────────────────────
 
     @Get("rnm")
-    @Roles("admin", "gestor_tomo", "gestor_all", "visualizador_tomo", "visualizador_all")
+    @Roles("admin", "gestor_tomo", "gestor_all", "gestor_all_combo", "visualizador_tomo", "visualizador_all")
     @ApiOperation({ summary: "Listar todos os hospitais com dados RNM" })
     findAllRnm() {
         return this.service.findAllRnm();
@@ -108,7 +108,7 @@ export class HospitalController {
     // ── Criar COMBO ──────────────────────────────────────────────────────────
 
     @Post("combo")
-    @Roles("admin", "gestor_tomo", "gestor_all")
+    @Roles("admin", "gestor_tomo", "gestor_all", "gestor_all_combo")
     @ApiOperation({ summary: "Adicionar novo registro COMBO via CNES" })
     @ApiResponse({ status: 201, description: "Registro COMBO criado" })
     createCombo(@Body() dto: CreateHospitalComboDto) {
@@ -118,7 +118,7 @@ export class HospitalController {
     // ── Listar COMBO ─────────────────────────────────────────────────────────
 
     @Get("combo")
-    @Roles("admin", "gestor_tomo", "gestor_all", "visualizador_tomo", "visualizador_all")
+    @Roles("admin", "gestor_tomo", "gestor_all", "gestor_all_combo", "visualizador_tomo", "visualizador_all")
     @ApiOperation({ summary: "Listar todos os registros COMBO" })
     findAllCombo() {
         return this.service.findAllCombo();
@@ -127,7 +127,7 @@ export class HospitalController {
     // ── Atualizar COMBO ───────────────────────────────────────────────────────
 
     @Put("combo/:id")
-    @Roles("admin", "gestor_tomo", "gestor_all")
+    @Roles("admin", "gestor_tomo", "gestor_all", "gestor_all_combo")
     @ApiOperation({ summary: "Atualizar dados de um registro COMBO pelo id do combo" })
     @ApiResponse({ status: 200, description: "Dados COMBO atualizados" })
     @ApiResponse({ status: 404, description: "Registro COMBO não encontrado" })

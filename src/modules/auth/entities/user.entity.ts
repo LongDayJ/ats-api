@@ -12,6 +12,7 @@ export type UserRole =
     | "gestor_transporte"
     | "gestor_tomo"
     | "gestor_all"
+    | "gestor_all_combo"
     | "visualizador_transporte"
     | "visualizador_tomo"
     | "visualizador_all";
